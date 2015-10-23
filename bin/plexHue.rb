@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 require 'rubygems'
 require 'bundler/setup'
 require 'json'
@@ -31,9 +31,9 @@ class PlexHue
         end
 
         begin
-            $logging_path = File.join(File.expand_path(File.dirname(__FILE__)), '../plexHue.log') 
+            $logging_path = File.join(File.expand_path(File.dirname(__FILE__)), '../plexHue.log')
             $logger = Logger.new($logging_path)
-            
+
             if $options[:verbose]
                 $logger.level = Logger::DEBUG
             else
@@ -55,8 +55,8 @@ class PlexHue
         hue.deleteGroup
         hue.createGroup
 
-        while 
-	    begin   
+        while
+	    begin
                 nowPlaying = plex.get('status/sessions')['MediaContainer']
             rescue
 		$logger.error("Cannot connect to the Plex Server.  Will wait 30 seconds and try again.")
@@ -98,7 +98,7 @@ class PlexHue
                      end
                  end
             elsif nowPlaying['size'].to_i > 1
-                nowPlaying['Video'].each do | client | 
+                nowPlaying['Video'].each do | client |
                     if client['Player']['machineIdentifier'].empty?
                         client['Player']['machineIdentifier'] = ''
                     end
@@ -139,7 +139,7 @@ class PlexHue
                 $logger.info("Video is stopped.  Turning lights back on")
                 hue.transition($state)
             end
-            
+
             sleep 1
         end
     end

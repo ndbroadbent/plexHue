@@ -75,9 +75,9 @@ class Hue
         if state == 'playing'
             self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":false, \"transitiontime\":#{$config['hue']['starttransitiontime']}}")
         elsif state == 'paused'
-            self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":true, \"bri\":128, \"transitiontime\":#{$config['hue']['pausedtransitiontime']}}")
+            self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":true, \"alert\":\"none\", \"bri\":128, \"transitiontime\":#{$config['hue']['pausedtransitiontime']}}")
         elsif state == 'stopped'
-            self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":true, \"bri\":255, \"transitiontime\":#{$config['hue']['stoptransitiontime']}}")
+            self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":true, \"bri\":254, \"transitiontime\":#{$config['hue']['stoptransitiontime']}}")
         end
     end
 end

@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 require 'rubygems'
 require 'json'
 require 'httparty'
@@ -18,8 +18,13 @@ class MachineID
         rescue Errno::ENOENT => e
             abort('Configuration file not found.  Exiting...')
         end
+
+        self.class.headers['X-Plex-Token'] = $config['plex']['api_key']
+
         if !$config['plex']['server'].nil?
-            self.class.base_uri "http://#{$config['plex']['server']}:32400//"
+            base_uri = "http://#{$config['plex']['server']}:32400//"
+            puts "Setting base url: #{base_uri}"
+            self.class.base_uri base_uri
         end
     end
 
