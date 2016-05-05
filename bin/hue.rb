@@ -73,7 +73,7 @@ class Hue
 
     def transition(state)
         if state == 'playing'
-            self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":true, \"alert\":\"none\", \"bri\":100, \"transitiontime\":#{$config['hue']['starttransitiontime']}}")
+            self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":true, \"alert\":\"none\", \"bri\":128, \"transitiontime\":#{$config['hue']['starttransitiontime']}}")
 	       system("su ndbroadbent -c \"DISPLAY=:0.0 dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause\"")
         elsif state == 'paused'
             self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":true, \"alert\":\"none\", \"bri\":200, \"transitiontime\":#{$config['hue']['pausedtransitiontime']}}")
