@@ -52,8 +52,8 @@ class PlexHue
         $state = 'stopped'
         $pauseTime = 0
 
-        hue.deleteGroup
-        hue.createGroup
+        #hue.deleteGroup
+        #hue.createGroup
 
         while
 	    begin
