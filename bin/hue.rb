@@ -73,11 +73,10 @@ class Hue
 
     def transition(state)
         if state == 'playing'
-#            self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":true, \"alert\":\"none\", \"bri\":128, \"transitiontime\":#{$config['hue']['starttransitiontime']}}")
-	       system("su ndbroadbent -c \"DISPLAY=:0.0 dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause\"")
-
-           # Also pause MPC (internet radio on Mopidy)
-           system("mpc -P #{$config['mpc']['password']} pause")
+            # self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":true, \"alert\":\"none\", \"bri\":128, \"transitiontime\":#{$config['hue']['starttransitiontime']}}")
+            $logger.info("Pausing Spotify and MPD...")
+            system("su ndbroadbent -c \"DISPLAY=:0.0 dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Pause\"")
+            system("mpc -P #{$config['mpc']['password']} pause")
         elsif state == 'paused'
  #           self.class.put("groups/#{self.getPlexGroup}/action", :body => "{\"on\":true, \"alert\":\"none\", \"bri\":200, \"transitiontime\":#{$config['hue']['pausedtransitiontime']}}")
 	       #system("su ndbroadbent -c \"DISPLAY=:0.0 dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play\"")
