@@ -9,3 +9,6 @@ hue:
    pausedtransitiontime: 30
    stoptransitiontime: 100
    lights: ["Light 1", "Light 2"]
+
+mpc:
+  password: <pass>
