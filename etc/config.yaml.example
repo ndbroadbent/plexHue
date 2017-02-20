@@ -12,3 +12,7 @@ hue:
 
 mpc:
   password: <pass>
+
+deploy:
+  host: <ip>
+  path: /opt/plexHue
